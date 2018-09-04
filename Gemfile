@@ -36,6 +36,8 @@ gem "figaro"
 
 gem "aws-sdk-s3", require: false
 
+gem "pry"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
