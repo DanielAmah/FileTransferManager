@@ -4,7 +4,7 @@ class FileUploadsController < ApplicationController
   # GET /file_uploads
   # GET /file_uploads.json
   def index
-    @file_uploads = FileUpload.all
+    @file_uploads = FileUpload.with_attached_files
   end
 
   # GET /file_uploads/1
@@ -69,6 +69,6 @@ class FileUploadsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def file_upload_params
-      params.require(:file_upload).permit(:name, :file)
+      params.require(:file_upload).permit(:name, files: [])
     end
 end

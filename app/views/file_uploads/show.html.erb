@@ -5,12 +5,14 @@
   <%= @file_upload.name %>
 </p>
 
-<% if @file_upload.file.attached? %>
+<% if @file_upload.files.attached? %>
 <!-- @post.image.present? will always return true, use attached? to check presence -->
   <p>
-    <strong>File:</strong>
+    <strong>Files:</strong>
     <br>
-    <%= link_to 'Download', @file_upload.file, download: '' %>
+    <% @file_upload.files.each do |file| %>
+    <%= link_to 'Download', file, download: '' %>
+    <% end %>
   </p>
 <% end %>
 
