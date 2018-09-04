@@ -11,6 +11,11 @@
     <strong>Files:</strong>
     <br>
     <% @file_upload.files.each do |file| %>
+    <%if file.content_type.start_with? 'image/' %>
+    <%= image_tag(file) %>
+    <% else %>
+    <%= image_tag("file.png") %>
+    <% end %>
     <%= link_to 'Download', file, download: '' %>
     <% end %>
   </p>
