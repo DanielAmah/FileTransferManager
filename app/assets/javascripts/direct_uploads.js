@@ -29,6 +29,15 @@ addEventListener("direct-upload:error", event => {
   const element = document.getElementById(`direct-upload-${id}`)
   element.classList.add("direct-upload--error")
   element.setAttribute("title", error)
+  const errorMessage = document.getElementById('duplicate_message')
+  const errorContainer = document.getElementsByClassName('duplicate-message-container')
+  if ( errorContainer[0].style.display = "none") {
+    errorContainer[0].style.display = "block";
+  }
+
+  const newError = error + ". This file already exist"
+  errorMessage.innerHTML = newError
+  console.log(error, errorMessage);
 })
 
 addEventListener("direct-upload:end", event => {
