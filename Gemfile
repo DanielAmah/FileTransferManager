@@ -38,6 +38,8 @@ gem "aws-sdk-s3", require: false
 
 gem "pry"
 
+gem 'dropzonejs-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
