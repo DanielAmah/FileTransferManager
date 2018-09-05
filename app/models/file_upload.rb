@@ -3,6 +3,12 @@ class FileUpload < ApplicationRecord
   validates :name, presence: true
   validate :file_attached
 
+def save
+  super
+  rescue ActiveRecord::RecordNotUnique => err
+    errors.add(:files, "'#{files.filename}' already exists")
+    false
+end
 
   private
 
