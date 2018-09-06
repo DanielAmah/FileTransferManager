@@ -1,14 +1,15 @@
 (function() {
 addEventListener("direct-upload:initialize", event => {
   const { target, detail } = event
-  console.log(detail);
-  const { id, file } = detail
-  target.insertAdjacentHTML("beforebegin", `
-    <div id="direct-upload-${id}" class="direct-upload direct-upload--pending">
-      <div id="direct-upload-progress-${id}" class="direct-upload__progress" style="width: 0%"></div>
-      <span class="direct-upload__filename">${file.name}</span>
-    </div>
-  `)
+  const { id, file, progress } = detail
+  const progressBar = document.getElementById("progress-bar")
+  progressBar.insertAdjacentHTML("beforebegin", `
+  <div id="direct-upload-${id}" class="direct-upload direct-upload--pending">
+    <div id="direct-upload-progress-${id}" class="direct-upload__progress" style="width: 0%"></div>
+    <span class="direct-upload__filename">${file.name} </span>
+    <br>
+  </div>
+`)
 })
 
 addEventListener("direct-upload:start", event => {
@@ -37,7 +38,8 @@ addEventListener("direct-upload:error", event => {
 
   const newError = error + ". This file already exist"
   errorMessage.innerHTML = newError
-  console.log(error, errorMessage);
+  const uploadBtn = document.getElementById('upload-file')
+  uploadBtn.removeAttribute('data-disable-with');
 })
 
 addEventListener("direct-upload:end", event => {

@@ -31,6 +31,7 @@ class FileUploadsController < ApplicationController
         format.html { redirect_to @file_upload, notice: 'File upload was successfully created.' }
         format.json { render :show, status: :created, location: @file_upload }
       else
+        @file_upload.files.purge_later
         format.html { render :new }
         format.json { render json: @file_upload.errors, status: :unprocessable_entity }
       end
@@ -45,6 +46,7 @@ class FileUploadsController < ApplicationController
         format.html { redirect_to @file_upload, notice: 'File upload was successfully updated.' }
         format.json { render :show, status: :ok, location: @file_upload }
       else
+        @file_upload.files.purge_later
         format.html { render :edit }
         format.json { render json: @file_upload.errors, status: :unprocessable_entity }
       end
@@ -55,6 +57,7 @@ class FileUploadsController < ApplicationController
   # DELETE /file_uploads/1.json
   def destroy
     @file_upload.destroy
+    @file_upload.files.purge_later
     respond_to do |format|
       format.html { redirect_to file_uploads_url, notice: 'File upload was successfully destroyed.' }
       format.json { head :no_content }
