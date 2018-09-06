@@ -1,30 +1,31 @@
+
 <%= form_with(model: file_upload, local: true) do |form| %>
   <% if file_upload.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(file_upload.errors.count, "error") %> prohibited this file_upload from being saved:</h2>
-
-      <ul>
+    <div class="alert alert-danger" role="alert">
       <% file_upload.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <span><%= message %></span><br>
       <% end %>
-      </ul>
     </div>
   <% end %>
-  <ul class="duplicate-message-container">
-    <li id="duplicate_message"></li>
-  </ul>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="alert alert-danger duplicate-message-container" role="alert">
+    <span id="duplicate_message"></span>
   </div>
 
-  <div class="field">
-    <%= form.label :files %>
+  <div id="progress-bar"></div>
+  <div class="form-group text-center">
+    <%= form.text_field :name, class: "form-control file-name text-center", placeholder: 'Enter a file name' %>
+    <small id="emailHelp" class="form-text text-muted">Kindly enter a file name for your uploads</small>
+  </div>
+
+  <div class="upload-btn-wrapper">
+    <div>
+      <%= image_tag("cloud.svg", class: "cloud-upload-icon") %>
+    </div>
+    <span>Drag files here or </span><span class="browse"> &nbsp; browse</span>
     <%= form.file_field :files, multiple: true, direct_upload: true , class: "dropzone" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group actions">
+    <%= form.submit 'UPLOAD FILE', :class => 'btn btn-primary btn-upload', :id=> 'upload-file', data: { disable_with: false } %>
   </div>
 <% end %>

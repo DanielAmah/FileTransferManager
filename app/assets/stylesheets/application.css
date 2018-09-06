@@ -12,5 +12,6 @@
  *
  *= require_tree .
  *= require dropzone/dropzone
+ *= require toastr
  *= require_self
  */

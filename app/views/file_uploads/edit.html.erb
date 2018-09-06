@@ -1,6 +1,13 @@
-<h1>Editing File Upload</h1>
+<div class="all-uploads">
+  <div class="file-container">
+    <div class="box">
+      <div class="header-container">
+        <p class="header-title">EDIT FILE UPLOAD</p>
+      </div>
+      <%= render 'form', file_upload: @file_upload %>
 
-<%= render 'form', file_upload: @file_upload %>
-
-<%= link_to 'Show', @file_upload %> |
-<%= link_to 'Back', file_uploads_path %>
+      <%= link_to 'SHOW', @file_upload, :class => 'small list-uploads' %> |
+      <%= link_to 'BACK', file_uploads_path, :class => 'small list-uploads' %>
+    </div>
+  </div>
+</div>

@@ -5,22 +5,25 @@
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
 
 Rails.application.config.content_security_policy do |policy|
-  policy.default_src :self, :https
-  policy.font_src    :self, :https, :data
-  policy.img_src     :self, :https, :data
-  policy.object_src  :none
-  policy.script_src  :self, :https
-  policy.style_src   :self, :https, :unsafe_inline
-  if Rails.env.development?
-    policy.script_src  :self, :https, :unsafe_eval
-    policy.default_src  :self, :https, :unsafe_eval
+  # policy.default_src :self, :https
+  # policy.font_src    :self, :https, :data
+  # policy.img_src     :self, :https, :data
+  # policy.object_src  :none
+  # policy.script_src  :self, :https, :unsafe_inline
+  # policy.style_src   :self, :https, :unsafe_inline
+  if Rails.env.production?
+    policy.font_src    :self, :https, :data
+    policy.img_src     :self, :https, :data
+    policy.object_src  :none
+    policy.script_src  :self, :https, :unsafe_inline
+    policy.default_src  :self, :https, :unsafe_inline
     policy.connect_src  :self, :https, 'http://localhost:3000'
-  else
-    policy.script_src :self, :https
-    policy.default_src :self, :https
+  # else
+  #   policy.script_src :self, :https, :unsafe_inline
+  #   policy.default_src :self, :https, :unsafe_inline
   end
   # Specify URI for violation reports
-  policy.report_uri "/csp-violation-report-endpoint"
+  # policy.report_uri "/csp-violation-report-endpoint"
 end
 
 # If you are using UJS then enable automatic nonce generation

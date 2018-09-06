@@ -40,6 +40,9 @@ gem "pry"
 
 gem 'dropzonejs-rails'
 
+gem  'toastr-rails'
+
+gem 'jquery-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
