@@ -4,7 +4,7 @@ RSpec.describe FileUpload, :type => :model do
 
   describe "Validations" do
     subject(:file_upload) { FileUpload.new }
-    subject(:upload_file) {create(:file_upload, :one_file) }
+    subject(:upload_file) {create(:file_upload, :big_file) }
     subject(:multiple_file) {create(:file_upload, :similar_files) }
     it "should validate presence of name" do
       file_upload.valid?
